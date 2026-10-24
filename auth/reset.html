@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src https://eyswaywvtartpvtoxtdr.supabase.co; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Reset password — EquipSeva</title>
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/auth/reset.css" />
+</head>
+<body>
+  <main class="card">
+    <div class="brand">
+      <div class="brand-dot">E</div>
+      <div class="brand-name">EquipSeva</div>
+    </div>
+
+    <h1>Set a new password</h1>
+    <p class="sub">Choose a strong password you haven't used elsewhere. After saving, sign in to the app with the new password.</p>
+
+    <form id="form">
+      <label for="pw1">New password</label>
+      <input id="pw1" type="password" minlength="8" required autocomplete="new-password" />
+
+      <label for="pw2">Confirm new password</label>
+      <input id="pw2" type="password" minlength="8" required autocomplete="new-password" />
+
+      <button class="primary" id="submit" type="submit" disabled>Update password</button>
+    </form>
+
+    <div id="alert" class="alert" role="status" aria-live="polite"></div>
+
+    <p class="footer">Need help? Email <a href="mailto:support@equipseva.com" class="support-link">support@equipseva.com</a></p>
+  </main>
+
+  <script src="/auth/reset.js" defer></script>
+</body>
+</html>
