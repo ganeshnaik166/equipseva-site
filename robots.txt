@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /auth/
 
 Sitemap: https://equipseva.com/sitemap.xml

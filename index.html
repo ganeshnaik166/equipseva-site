@@ -1,177 +1,85 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-IN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>EquipSeva · Your NABH equipment file, done for you</title>
-  <meta name="description" content="We turn your hospital's own equipment lists, invoices and machine photos into a finished NABH equipment file, remotely. For private hospitals in Hyderabad.">
+  <meta charset="utf-8" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>EquipSeva: verified engineers for hospital equipment</title>
+  <meta name="description" content="Book KYC-checked biomedical engineers for repairs and AMC visits on hospital and clinic equipment in India. Your payment stays in escrow until the job is done." />
+  <meta name="theme-color" content="#0b0d0c" />
+  <meta name="color-scheme" content="dark" />
+  <!-- share preview: og.jpg = public/og.jpg (1200x630, a frame of this site); vite.config.js makes the
+       image URLs absolute and adds canonical + og:url when the site URL is known (SITE_URL) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="EquipSeva" />
+  <meta property="og:locale" content="en_IN" />
+  <meta property="og:title" content="EquipSeva: verified engineers for hospital equipment" />
+  <meta property="og:description" content="Post a repair, compare bids from KYC-checked biomedical engineers and pay through escrow. AMC contracts with scheduled visits." />
+  <meta property="og:image" content="https://equipseva.com/og.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="The EquipSeva home: a glowing vitals-monitor hologram above a stone pool in a banyan grove at dawn" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="EquipSeva: verified engineers for hospital equipment" />
+  <meta name="twitter:description" content="Post a repair, compare bids from KYC-checked biomedical engineers and pay through escrow. AMC contracts with scheduled visits." />
+  <meta name="twitter:image" content="https://equipseva.com/og.jpg" />
+  <meta name="twitter:image:alt" content="The EquipSeva home: a glowing vitals-monitor hologram above a stone pool in a banyan grove at dawn" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* page shell only: the HUD styles itself (src/styles/ui.css), the world draws into #webgl */
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #0b0d0c; color: #fff; overscroll-behavior: none; }
+    #webgl { position: fixed; inset: 0; width: 100%; height: 100%; display: block; outline: none; touch-action: none; }
+    /* no WebGL 2: the HUD runs over a still dawn-grove gradient instead of the 3D world */
+    .no-webgl #webgl { display: none; }
+    .no-webgl body {
+      background:
+        radial-gradient(28% 36% at 50% 40%, rgba(236, 255, 247, 0.32), rgba(236, 255, 247, 0) 70%),
+        linear-gradient(to bottom, #3c4766 0%, #b48f98 52%, #6c6064 64%, #15130f 82%, #0b0d0c 100%);
+    }
+    /* Boot shell: the first frame of the HUD loader (.esu-loader in ui.css: backdrop, orbit lines,
+       progress track and counter) painted before the script bundle arrives. src/main.js removes it
+       the moment the HUD attaches its own loader in the same place. */
+    #boot { position: fixed; inset: 0; z-index: 10; display: grid; place-items: center; overflow: hidden; pointer-events: none;
+      background: radial-gradient(110% 90% at 50% 46%, #141816 0%, #0c0f0d 52%, #070908 100%);
+      font-family: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+      color: #fff; text-transform: uppercase; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    #boot svg { position: absolute; left: 50%; top: 50%; width: 145vmax; height: 145vmax; transform: translate(-50%, -50%); }
+    #boot circle { fill: none; stroke: rgba(255, 255, 255, 0.06); stroke-width: 1; vector-effect: non-scaling-stroke; }
+    #boot circle:nth-child(2n) { stroke: rgba(255, 255, 255, 0.04); }
+    #boot .c { position: relative; display: flex; flex-direction: column; align-items: center; transform: translateY(-1.5vh); }
+    #boot .logo { width: 24px; height: 24px; margin-bottom: 20px; }
+    #boot .l1 { margin: 0; font-size: 9.5px; font-weight: 500; letter-spacing: 0.22em; line-height: 1.5; visibility: hidden; }
+    #boot .l2 { margin: 6px 0 0; font-size: 8px; letter-spacing: 0.24em; visibility: hidden; }
+    #boot .bar { width: 96px; height: 1px; margin-top: 22px; background: rgba(255, 255, 255, 0.12); }
+    #boot .pc { position: absolute; right: clamp(16px, 2.8vw, 44px); bottom: 34px; font-size: 9px; letter-spacing: 0.22em; color: rgba(255, 255, 255, 0.62); font-variant-numeric: tabular-nums; }
+    noscript p { position: fixed; z-index: 11; left: 24px; right: 24px; bottom: 32px; margin: 0; font: 14px/1.5 system-ui, sans-serif; color: rgba(255, 255, 255, 0.8); }
+    noscript a { color: #7cf5c8; }
+  </style>
+  <noscript><style>#boot { display: none; }</style></noscript>
+  <script type="module" crossorigin src="./assets/index-CGLcoSTj.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DAstGAbK.css">
   <link rel="canonical" href="https://equipseva.com/">
-  <meta name="theme-color" content="#111418">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="EquipSeva">
-  <meta property="og:locale" content="en_IN">
   <meta property="og:url" content="https://equipseva.com/">
-  <meta property="og:title" content="Your NABH equipment file, done for you">
-  <meta property="og:description" content="Your equipment lists, invoices and machine photos, turned into a finished NABH equipment file, remotely. For private hospitals in Hyderabad.">
-  <meta property="og:image" content="https://equipseva.com/og-equipment-file.jpg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="EquipSeva: your NABH equipment file, done for you">
-  <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="/site.css">
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-
-  <header class="top">
-    <div class="wrap top__in">
-      <a class="brand" href="/" aria-label="EquipSeva home">Equip<span>Seva</span></a>
-      <nav class="nav" aria-label="Main">
-        <a href="#file">What you get</a>
-        <a href="#how">How it works</a>
-        <a href="#price">Price</a>
-      </nav>
-      <a class="btn btn--small" href="mailto:support@equipseva.com?subject=NABH%20equipment%20file">Email us</a>
+  <canvas id="webgl" aria-hidden="true"></canvas>
+  <div id="ui">
+    <div id="boot" aria-hidden="true">
+      <svg viewBox="0 0 1000 1000" focusable="false"><circle cx="500" cy="500" r="330"/><circle cx="500" cy="500" r="470"/><circle cx="90" cy="820" r="520"/><circle cx="930" cy="140" r="480"/><circle cx="-60" cy="260" r="430"/><circle cx="760" cy="1080" r="400"/><circle cx="300" cy="-120" r="560"/></svg>
+      <div class="c"><div class="logo"></div><p class="l1">INITIALISING SEVA NETWORK</p><p class="l2">LOADING, PLEASE WAIT</p><div class="bar"></div></div>
+      <span class="pc">000</span>
     </div>
-  </header>
-
-  <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap">
-        <p class="eyebrow">For private hospitals and nursing homes in Hyderabad</p>
-        <h1 id="hero-title">Your NABH equipment file, done for you.</h1>
-        <p class="lead">You already have Excel lists, invoices and AMC contracts. Your staff add two photos of each machine. We build your equipment register and your NABH equipment file from them, working remotely. No site visit, and no typing for your staff.</p>
-        <div class="cta">
-          <a class="btn" href="mailto:support@equipseva.com?subject=NABH%20equipment%20file">Email us to book a call</a>
-          <a class="btn btn--ghost" href="#file">See what is in the file</a>
-        </div>
-        <p class="note">About 3 to 4 weeks and 11 to 15 hours of your staff's time. A fixed price by bed count, paid in advance.</p>
-        <p class="note">Or write to <a href="mailto:support@equipseva.com?subject=NABH%20equipment%20file">support@equipseva.com</a>. EquipSeva is independent and not part of NABH.</p>
-      </div>
-    </section>
-
-    <section id="file" class="sec" aria-labelledby="file-title">
-      <div class="wrap">
-        <h2 id="file-title">What you get</h2>
-        <p class="intro">Built for NABH Entry-Level (2nd edition). Preparing for full accreditation (6th edition)? Tell us on the call.</p>
-        <ul class="grid">
-          <li>
-            <h3>Equipment register</h3>
-            <p>Each machine you list or photograph, department by department, in your own asset codes (or codes we suggest if you have none). Each fact shows where it came from.</p>
-          </li>
-          <li>
-            <h3>PM (preventive maintenance) tracker</h3>
-            <p>Planned and done, month by month, for medical equipment and for utility, facility and furniture items.</p>
-          </li>
-          <li>
-            <h3>Calibration register</h3>
-            <p>Due and done dates for each machine in the register, with the certificates you have.</p>
-          </li>
-          <li>
-            <h3>Critical equipment and downtime</h3>
-            <p>Your critical-equipment list, and a ready-to-use downtime sheet that runs from each complaint until the ward confirms the fix.</p>
-          </li>
-          <li>
-            <h3>Complaint log</h3>
-            <p>A ready-to-use log: when each complaint came in, who took it, what was done and when the ward confirmed it.</p>
-          </li>
-          <li>
-            <h3>Training and on-call sheets</h3>
-            <p>Ready-to-fill sheets: who is trained on which model, and who to call for repairs at night and on weekends.</p>
-          </li>
-          <li>
-            <h3>Licence calendar and contracts</h3>
-            <p>The licences you tell us about, with renew-by dates from your certificates, and your AMC or CMC contracts with what each covers.</p>
-          </li>
-          <li>
-            <h3>Equipment SOPs</h3>
-            <p>Short SOPs in Word that you can edit, each with a header for document number, version and approvals.</p>
-          </li>
-          <li>
-            <h3>QR label sheet</h3>
-            <p>A label sheet you print on A4, one label for each machine in your register.</p>
-          </li>
-        </ul>
-        <p class="deliver">Delivered as Word and Excel files you can edit, plus a PDF copy that names who prepared and reviewed it, and the date.</p>
-      </div>
-    </section>
-
-    <section id="how" class="sec sec--alt" aria-labelledby="how-title">
-      <div class="wrap">
-        <h2 id="how-title">How it works</h2>
-        <p class="intro">For a hospital with about 250 to 300 machines.</p>
-        <ol class="steps">
-          <li>
-            <h3><span class="when">Day 0</span> A <span class="nb">20-minute</span> video call</h3>
-            <p>Keep three nameplate photos handy: we read them live and show you how each machine will look in your register. You name one coordinator and pay in advance.</p>
-          </li>
-          <li>
-            <h3><span class="when">Day 1</span> First photos, first sample</h3>
-            <p>Your coordinator sends the first photos and any old Excel files, the way we agreed on the call. We send back a <span class="nb">10-machine</span> sample within 24 hours.</p>
-          </li>
-          <li>
-            <h3><span class="when">Weeks 1 to 2</span> Photo walk, ICU and OT first</h3>
-            <p>One photo of each nameplate and one of the whole machine, department by department. Your staff also find invoices, AMC contracts and certificates, and we read them.</p>
-          </li>
-          <li>
-            <h3><span class="when">Week 3</span> Draft and review</h3>
-            <p>A draft file, a short list of what is still missing, and your label sheet, then a <span class="nb">30-minute</span> review call.</p>
-          </li>
-          <li>
-            <h3><span class="when">Weeks 3 to 4</span> Final file</h3>
-            <p>Your quality coordinator checks 10 machines on the floor and signs, your administrator accepts the register, and your staff stick and scan the labels.</p>
-          </li>
-        </ol>
-        <p class="callout">Plan on about 3 to 4 weeks and about 11 to 15 hours of your staff's time, mostly taking photos and finding papers. Expect a second photo pass for hard-to-read nameplates, plus time to stick the labels. Your draft arrives within 48 hours of the last photo.</p>
-      </div>
-    </section>
-
-    <section id="price" class="sec" aria-label="Price and good to know">
-      <div class="wrap two">
-        <div>
-          <h2>Price</h2>
-          <p>A fixed price by bed count, paid in advance. Tell us your bed count and we will send a quote.</p>
-          <p>Hospitals with more than 150 beds, and hospital chains: ask us.</p>
-        </div>
-        <div>
-          <h2>Good to know</h2>
-          <ul class="facts">
-            <li><strong>No patient data.</strong> We never need patient names, IDs or images. Please keep patients, patient screens and patient files out of every photo.</li>
-            <li><strong>Records, not advice.</strong> The file records facts and where each one came from. We do not give clinical, legal or licensing advice.</li>
-            <li><strong>At handover.</strong> You get the Word and Excel files to edit and a PDF copy.</li>
-            <li><strong>Independent.</strong> EquipSeva is not part of NABH. Accreditation decisions are made by NABH.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section id="engineers" class="sec sec--alt" aria-labelledby="eng-title">
-      <div class="wrap">
-        <h2 id="eng-title">For biomedical engineers</h2>
-        <p class="intro">Independent engineer, service firm, or a hospital's own engineer? Send a voice note and two photos after a job. Get back an English service record and a bill you send to the hospital yourself. The hospital pays you directly. Free for engineers.</p>
-        <a class="btn btn--dark" href="mailto:support@equipseva.com?subject=Service%20records%20for%20engineers">Email us to join</a>
-      </div>
-    </section>
-
-    <section id="contact" class="end" aria-labelledby="contact-title">
-      <div class="wrap">
-        <h2 id="contact-title">Book a <span class="nb">20-minute</span> call</h2>
-        <p>Email <a href="mailto:support@equipseva.com?subject=NABH%20equipment%20file">support@equipseva.com</a> with your hospital's name and number of beds. Please do not attach files yet: on the call we agree how to send them, and we read three of your nameplates live.</p>
-        <a class="btn" href="mailto:support@equipseva.com?subject=NABH%20equipment%20file">Email us</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="foot">
-    <div class="wrap foot__in">
-      <p class="foot__id"><span class="brand brand--small">Equip<span>Seva</span></span><span>Hyderabad, Telangana</span><a href="mailto:support@equipseva.com">support@equipseva.com</a></p>
-      <nav aria-label="Legal">
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
-        <a href="/refunds/">Refunds</a>
-      </nav>
-    </div>
-  </footer>
+  </div>
+  <noscript>
+    <p>EquipSeva connects hospitals and clinics in India with KYC-checked biomedical engineers for repairs and AMC contracts.
+      <a href="mailto:support@equipseva.com?subject=Service%20request">Request service</a> ·
+      <a href="mailto:support@equipseva.com?subject=Engineer%20sign-up">Join as an engineer</a> ·
+      <a href="https://equipseva.com/privacy/">Privacy</a> ·
+      <a href="https://equipseva.com/terms/">Terms</a> ·
+      <a href="https://equipseva.com/refunds/">Refunds</a></p>
+  </noscript>
 </body>
 </html>
